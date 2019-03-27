@@ -1,0 +1,23 @@
+
+#
+#  datasource
+#
+study:
+  datasource:
+    master:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.80.36:3306/test?characterEncoding=UTF-8&amp;autoReconnect=true&amp;rewriteBatchedStatements=true&allowMultiQueries=true
+      username: lekuda
+      password: 123456
+      max-active: 10
+      min-idle: 0
+#
+# logging config file location
+#
+logging:
+  config: classpath:config/log/logback-spring.xml
+  path: target/logs
+  level:
+    default: INFO
+
