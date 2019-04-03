@@ -4,6 +4,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import study.StudyDemoApplication;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
@@ -49,8 +51,22 @@ public class BaseTest {
         //list.add(0,8);
         //System.out.println(JSON.toJSON(list));
 
-        String str = "AAA,bbb,";
-        System.out.println(str.split(",").length);
+
+        BigDecimal cny = new BigDecimal("68439.2");
+        BigDecimal rub = new BigDecimal("440486.5405");
+        BigDecimal thb = new BigDecimal("2495.8");
+        BigDecimal vnd = new BigDecimal("51962323.7580");
+        BigDecimal cnyUsd = cny.divide(getRate(new BigDecimal("6.72")),2, RoundingMode.HALF_UP);
+        BigDecimal rubUsd = rub.divide(new BigDecimal("65.87"),2, RoundingMode.HALF_UP);
+        BigDecimal thbUsd = thb.divide(new BigDecimal("31.25"),2, RoundingMode.HALF_UP);
+        BigDecimal vndUsd = vnd.divide(getRate(new BigDecimal("23190")),2, RoundingMode.HALF_UP);
+        System.out.println(cnyUsd.add(vndUsd));
+
+        // USD兑换法币的比率:USD/CNY = (USDT/CNY) / (USDT/USD)
+    }
+
+    private  static BigDecimal getRate(BigDecimal usdt2legal){
+        return usdt2legal.divide(new BigDecimal("1"), 2, RoundingMode.HALF_UP);
     }
 
 }
