@@ -11,5 +11,6 @@ public interface UserService {
      * 新增用户
      * @param name
      */
-    void addUser(String name);
+    void addUser(int id, String name);
+
 }

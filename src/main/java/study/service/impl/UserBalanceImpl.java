@@ -9,7 +9,7 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 import study.domain.UserBalance;
-import study.repository.UserBalanceRepository;
+import study.repository.master.UserBalanceRepository;
 import study.service.UserBalanceService;
 import study.service.UserService;
 
@@ -53,7 +53,7 @@ public class UserBalanceImpl implements UserBalanceService {
      */
     @Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public void addUserBalanceAndUser(String name, BigDecimal balance) {
+    public void addUserBalanceAndUser(int id, String name, BigDecimal balance) {
         log.info("[addUserBalanceAndUser] begin!!!");
         //1.新增用户余额
         UserBalance userBalance = new UserBalance();
@@ -63,7 +63,7 @@ public class UserBalanceImpl implements UserBalanceService {
         //2.新增用户，这里捕获嵌套事务的异常，不让外部事务获取到，不然外部事务肯定会回滚！
         try{
             // 嵌套事务NESTED
-            userService.addUser(name);
+            userService.addUser(id, name);
         }catch (Exception e){
             // 这里可根据实际情况添加自己的业务！
             log.error("嵌套事务【addUser】异常！",e);
@@ -80,7 +80,7 @@ public class UserBalanceImpl implements UserBalanceService {
      * @return
      */
     @Override
-    public void addUserBalanceAndUserWithinTT(String name, BigDecimal balance) {
+    public void addUserBalanceAndUserWithinTT(int id, String name, BigDecimal balance) {
         //1.没有返回值的事务回调
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
@@ -89,7 +89,7 @@ public class UserBalanceImpl implements UserBalanceService {
                     log.info("[addUserBalanceAndUser] begin!!!");
 
                     //1.新增用户
-                    userService.addUser(name);
+                userService.addUser(id, name);
                     //2.新增用户余额
                     UserBalance userBalance = new UserBalance();
                     userBalance.setName(name);

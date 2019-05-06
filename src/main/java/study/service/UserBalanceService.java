@@ -1,6 +1,5 @@
 package study.service;
 
-import org.springframework.stereotype.Service;
 import study.domain.UserBalance;
 
 import java.math.BigDecimal;
@@ -10,7 +9,6 @@ import java.math.BigDecimal;
  * @author denny
  * @date 2018/8/31 下午6:28
  */
-@Service
 public interface UserBalanceService {
     /**
      * 创建账户余额
@@ -25,7 +23,7 @@ public interface UserBalanceService {
      * @param balance
      * @return
      */
-    void addUserBalanceAndUser(String name, BigDecimal balance);
+    void addUserBalanceAndUser(int id, String name, BigDecimal balance);
 
     /**
      * 创建用户并创建账户余额(手动事务)
@@ -33,5 +31,5 @@ public interface UserBalanceService {
      * @param balance
      * @return
      */
-    void addUserBalanceAndUserWithinTT(String name, BigDecimal balance);
+    void addUserBalanceAndUserWithinTT(int id, String name, BigDecimal balance);
 }

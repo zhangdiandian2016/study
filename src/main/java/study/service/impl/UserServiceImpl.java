@@ -2,10 +2,8 @@ package study.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import study.domain.User;
-import study.repository.UserRepository;
+import study.repository.master.UserRepository;
 import study.service.UserService;
 
 import javax.annotation.Resource;
@@ -21,16 +19,18 @@ public class UserServiceImpl implements UserService{
     @Resource
     private UserRepository userRepository;
 
-    @Transactional(propagation= Propagation.NESTED, rollbackFor = Exception.class)
+    //@Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public void addUser(String name) {
+    public void addUser(int id, String name) {
         log.info("[addUser] begin!!!");
         User user = new User();
+        user.setId(id);
         user.setName(name);
         userRepository.insert(user);
 
-        log.info("[addUser] end!!! 手动构造异常！");
+        log.info("[addUser] end!!! ");
         //创造一个异常，看回滚情况
-        throw new RuntimeException();
+        //throw new RuntimeException();
     }
+
 }
