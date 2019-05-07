@@ -8,16 +8,11 @@ package study.service;
 public interface UserMsgService {
 
     /**
-     * 新增用户
-     *
+     * 新增带备注的用户
+     * @param id
      * @param name
+     * @param msg
      */
     void addUserMsg(int id, String name, String msg);
 
-    /**
-     * 新增用户
-     *
-     * @param name
-     */
-    void addUserMsgWithTT(int id, String name, String msg);
 }

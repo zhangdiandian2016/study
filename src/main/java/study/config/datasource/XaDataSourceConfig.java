@@ -4,7 +4,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import java.util.Properties;
 
@@ -21,7 +20,6 @@ public class XaDataSourceConfig {
      *
      * @return
      */
-    @Primary
     @ConfigurationProperties(prefix = "study.datasource.master")
     @Bean(name = "masterDataSource")
     public AtomikosDataSourceBean masterDataSource() {
@@ -31,9 +29,7 @@ public class XaDataSourceConfig {
         p.setProperty("user", "root");
         p.setProperty("password", "12345");
 
-        // 使用AtomikosDataSourceBean封装com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
-        //atomikos要求为每个AtomikosDataSourceBean名称，为了方便记忆，这里设置为和dbName相同
         ds.setUniqueResourceName("atomikosDataSource1");
         ds.setXaDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlXADataSource");
         ds.setXaProperties(p);
@@ -55,9 +51,7 @@ public class XaDataSourceConfig {
         p.setProperty("user", "root");
         p.setProperty("password", "12345");
 
-        // 使用AtomikosDataSourceBean封装com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
-        //atomikos要求为每个AtomikosDataSourceBean名称，为了方便记忆，这里设置为和dbName相同
         ds.setUniqueResourceName("atomikosDataSource2");
         ds.setXaDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlXADataSource");
         ds.setXaProperties(p);

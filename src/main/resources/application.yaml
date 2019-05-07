@@ -41,6 +41,9 @@ study:
 
 
 #  #jta相关参数配置
-#  jta:
-#    log-dir: classpath:tx-logs
-#    transaction-manager-id: txManager
+spring:
+  jta:
+    #日志地址，默认根目录下transaction-logs
+    #log-dir: classpath:tx-logs
+    #每个Atomikos的唯一ID,默认为ip地址
+    #transaction-manager-id: txManager

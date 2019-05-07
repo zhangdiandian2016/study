@@ -51,17 +51,20 @@ public class BaseTest {
         //list.add(0,8);
         //System.out.println(JSON.toJSON(list));
 
-        BigDecimal cny = new BigDecimal("68439.2");
-        BigDecimal rub = new BigDecimal("440486.5405");
-        BigDecimal thb = new BigDecimal("2495.8");
-        BigDecimal vnd = new BigDecimal("51962323.7580");
-        BigDecimal cnyUsd = cny.divide(getRate(new BigDecimal("6.72")),2, RoundingMode.HALF_UP);
-        BigDecimal rubUsd = rub.divide(new BigDecimal("65.87"),2, RoundingMode.HALF_UP);
-        BigDecimal thbUsd = thb.divide(new BigDecimal("31.25"),2, RoundingMode.HALF_UP);
-        BigDecimal vndUsd = vnd.divide(getRate(new BigDecimal("23190")),2, RoundingMode.HALF_UP);
-        System.out.println(cnyUsd.add(vndUsd));
+        //BigDecimal cny = new BigDecimal("68439.2");
+        //BigDecimal rub = new BigDecimal("440486.5405");
+        //BigDecimal thb = new BigDecimal("2495.8");
+        //BigDecimal vnd = new BigDecimal("51962323.7580");
+        //BigDecimal cnyUsd = cny.divide(getRate(new BigDecimal("6.72")),2, RoundingMode.HALF_UP);
+        //BigDecimal rubUsd = rub.divide(new BigDecimal("65.87"),2, RoundingMode.HALF_UP);
+        //BigDecimal thbUsd = thb.divide(new BigDecimal("31.25"),2, RoundingMode.HALF_UP);
+        //BigDecimal vndUsd = vnd.divide(getRate(new BigDecimal("23190")),2, RoundingMode.HALF_UP);
+        //System.out.println(cnyUsd.add(vndUsd));
 
         // USD兑换法币的比率:USD/CNY = (USDT/CNY) / (USDT/USD)
+
+        Long a = 190506182134855L;
+        System.out.println(String.format("订单{%s}已支付，等待对方放币", a));
     }
 
     private  static BigDecimal getRate(BigDecimal usdt2legal){
