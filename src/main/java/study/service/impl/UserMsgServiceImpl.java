@@ -48,7 +48,7 @@ public class UserMsgServiceImpl implements UserMsgService {
 
         log.info("[addUserMsg] end!!! ");
         //创造一个异常，看回滚情况
-        throw new RuntimeException();
+        //throw new RuntimeException();
     }
 
 
