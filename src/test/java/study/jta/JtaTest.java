@@ -18,7 +18,7 @@ public class JtaTest extends BaseTest {
 
     @Test
     public void jtaTest() {
-        this.userMsgService.addUserMsg(22, "test22", "test22备注");
+        this.userMsgService.addUserMsg(38, "test", "备注");
     }
 
 }

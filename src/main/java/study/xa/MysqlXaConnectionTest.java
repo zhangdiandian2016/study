@@ -17,18 +17,18 @@ import java.sql.SQLException;
  * @author denny
  * @date 2019/4/3 上午9:15
  */
-public class MysqlXAConnectionTest {
+public class MysqlXaConnectionTest {
 
     public static void main(String[] args) throws SQLException {
         //true表示打印XA语句,，用于调试
         boolean logXaCommands = true;
         // 获得资源管理器操作接口实例 RM1
-        Connection conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "12345");
+        Connection conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "alvin1989!");
         XAConnection xaConn1 = new MysqlXAConnection((com.mysql.jdbc.Connection)conn1, logXaCommands);
         XAResource rm1 = xaConn1.getXAResource();
 
         // 获得资源管理器操作接口实例 RM2
-        Connection conn2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test2", "root", "12345");
+        Connection conn2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/test2", "root", "alvin1989!");
         XAConnection xaConn2 = new MysqlXAConnection((com.mysql.jdbc.Connection)conn2, logXaCommands);
         XAResource rm2 = xaConn2.getXAResource();
         // AP请求TM执行一个分布式事务，TM生成全局事务id
@@ -41,7 +41,8 @@ public class MysqlXAConnectionTest {
             Xid xid1 = new MysqlXid(gtrid, bqual1, formatId);
             // 执行rm1上的事务分支 One of TMNOFLAGS, TMJOIN, or TMRESUME.
             rm1.start(xid1, XAResource.TMNOFLAGS);
-            PreparedStatement ps1 = conn1.prepareStatement("INSERT into user(name) VALUES ('name1')");
+            // 业务1：插入user表
+            PreparedStatement ps1 = conn1.prepareStatement("INSERT into user VALUES ('99', 'user99')");
             ps1.execute();
             rm1.end(xid1, XAResource.TMSUCCESS);
 
@@ -50,19 +51,20 @@ public class MysqlXAConnectionTest {
             Xid xid2 = new MysqlXid(gtrid, bqual2, formatId);
             // 执行rm2上的事务分支
             rm2.start(xid2, XAResource.TMNOFLAGS);
-            PreparedStatement ps2 = conn2.prepareStatement("INSERT into user(name) VALUES ('name2')");
+            // 业务2：插入user_msg表
+            PreparedStatement ps2 = conn2.prepareStatement("INSERT into user_msg VALUES ('88', '99', 'user99的备注')");
             ps2.execute();
             rm2.end(xid2, XAResource.TMSUCCESS);
 
             // ===================两阶段提交================================
             // phase1：询问所有的RM 准备提交事务分支
-            int rm1_prepare = rm1.prepare(xid1);
-            int rm2_prepare = rm2.prepare(xid2);
+            int rm1Prepare = rm1.prepare(xid1);
+            int rm2Prepare = rm2.prepare(xid2);
             // phase2：提交所有事务分支
             boolean onePhase = false;
             //TM判断有2个事务分支，所以不能优化为一阶段提交
-            if (rm1_prepare == XAResource.XA_OK
-                && rm2_prepare == XAResource.XA_OK
+            if (rm1Prepare == XAResource.XA_OK
+                && rm2Prepare == XAResource.XA_OK
                 ) {
                 //所有事务分支都prepare成功，提交所有事务分支
                 rm1.commit(xid1, onePhase);

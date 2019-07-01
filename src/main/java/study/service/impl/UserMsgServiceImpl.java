@@ -50,6 +50,4 @@ public class UserMsgServiceImpl implements UserMsgService {
         //创造一个异常，看回滚情况
         //throw new RuntimeException();
     }
-
-
 }

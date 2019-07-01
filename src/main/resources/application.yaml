@@ -43,7 +43,11 @@ study:
 #  #jta相关参数配置
 spring:
   jta:
+    #false:禁用JTA自动配置功能。可以使得本地事务也可以执行。true：彻底使用JTA环境，自动配置JMS，DataSource和JPA　beans将被升级以支持XA事务。
+    enabled: true
     #日志地址，默认根目录下transaction-logs
     #log-dir: classpath:tx-logs
     #每个Atomikos的唯一ID,默认为ip地址
     #transaction-manager-id: txManager
+  #autoconfigure:
+    #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
