@@ -1,6 +1,7 @@
-package study.algorithm.sort;
+package study.algorithm.sorting;
 
 import edu.princeton.cs.algs4.StdRandom;
+import study.algorithm.sorting.base.MySort;
 
 /**
  * @author denny.zhang

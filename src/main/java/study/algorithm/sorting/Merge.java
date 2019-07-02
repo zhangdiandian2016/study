@@ -1,4 +1,6 @@
-package study.algorithm.sort;
+package study.algorithm.sorting;
+
+import study.algorithm.sorting.base.MySort;
 
 /**
  * @author denny.zhang

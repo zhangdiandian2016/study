@@ -1,4 +1,4 @@
-package study.algorithm.sort;
+package study.algorithm.sorting.base;
 
 /***
  * @Description 自定义排序基类，封装常用方法

@@ -1,4 +1,6 @@
-package study.algorithm.sort;
+package study.algorithm.sorting;
+
+import study.algorithm.sorting.base.MySort;
 
 /**
  * @author denny.zhang
@@ -26,7 +28,7 @@ public class Shell extends MySort {
             h = 3 * h + 1;
         }
         while (h >= 1) {
-            // h-sort the array 2.遍历从h->n
+            // h-sorting the array 2.遍历从h->n
             for (int i = h; i < n; i++) {
                 //3.从j开始往左每h间隔比较一次，逆序就交换
                 for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
@@ -53,7 +55,8 @@ public class Shell extends MySort {
         int h = n;
         //1.第一层循环 是h值计算
         while (h >= 1) {
-            h = (int)Math.ceil(h / 2);//向上取整
+            //向上取整
+            h = (int)Math.ceil(h / 2);
             //2.第二层循环i++ 从h->n-1
             for (int i = h; i < n; i++) {
                 //3.第三层循环 从j开始往左每h间隔比较一次，逆序就交换,做到局部有序

@@ -43,7 +43,7 @@ public class UserBalanceTest extends BaseTest{
         //System.out.println(BigDecimal.ZERO.equals(bigDecimal));
 
         //List<String> list = Arrays.asList("aaaaaa","bbbb","cc","dd","f");
-        //list.sort(Comparator.comparingInt(String::length));
+        //list.sorting(Comparator.comparingInt(String::length));
         //System.out.println(list);
         ////AbstractPlatformTransactionManager
         //Double d = 20000000D;
