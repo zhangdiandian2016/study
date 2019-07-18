@@ -8,7 +8,7 @@ import study.algorithm.sorting.base.MySort;
  * @Description:堆排序：对于数组长度为N的数组<br> <ul> <li>比较次数：2NlgN+2N</li> <li>交换次数：NlgN+N</li> </ul>
  * @date 2018年2月5日上午11:13:26
  */
-public class Heap extends MySort {
+public class HeapSort extends MySort {
 
     /**
      * @param pq
@@ -60,7 +60,7 @@ public class Heap extends MySort {
     public static void main(String[] args) {
         //第一个元素空着不用排序，这样数组下标好算一点。排序结果：0 a b c d e
         String[] a = new String[] {"0", "d", "c", "b", "e", "a"};
-        Heap.sort(a);
+        HeapSort.sort(a);
         show(a);
     }
 }

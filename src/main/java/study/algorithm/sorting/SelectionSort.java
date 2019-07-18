@@ -5,10 +5,14 @@ import study.algorithm.sorting.base.MySort;
 /**
  * @author denny.zhang
  * @ClassName:Selection
- * @Description:选择排序：对于数组长度为N的数组<br> <ul> <li>比较次数：(n-1)+(n-2)+...2+1=n(n-1)/2,大约N²/2次</li> <li>交换次数：N次</li> </ul>
+ * @Description:选择排序：对于数组长度为N的数组<br>
+ *     <ul>
+ *         <li>比较次数：(n-1)+(n-2)+...2+1=n(n-1)/2,大约N²/2次</li>
+ *         <li>交换次数：N次</li>
+ *     </ul>
  * @date 2018年2月5日上午11:13:26
  */
-public class Selection extends MySort {
+public class SelectionSort extends MySort {
 
     public static void sort(Comparable[] a) {
         int n = a.length;
@@ -28,7 +32,7 @@ public class Selection extends MySort {
     }
 
     public static void main(String[] args) {
-        Selection.sort(a);
+        SelectionSort.sort(a);
         show(a);
     }
 }

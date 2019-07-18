@@ -8,7 +8,7 @@ import study.algorithm.sorting.base.MySort;
  * @Description:归并排序：自顶向下+自底向上。性能差不多：比较次数：1/2NlgN-NlgN 访问次数6NlgN
  * @date 2018年2月6日下午5:09:57
  */
-public class Merge extends MySort {
+public class MergeSort extends MySort {
 
     /**
      * @param a
@@ -96,7 +96,7 @@ public class Merge extends MySort {
     }
 
     public static void main(String[] args) {
-        Merge.sort(a);
+        MergeSort.sort(a);
         show(a);
     }
 }

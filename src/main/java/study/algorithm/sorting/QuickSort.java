@@ -1,6 +1,5 @@
 package study.algorithm.sorting;
 
-import edu.princeton.cs.algs4.StdRandom;
 import study.algorithm.sorting.base.MySort;
 
 /**
@@ -10,11 +9,11 @@ import study.algorithm.sorting.base.MySort;
  * @date 2018年2月7日下午5:50:56
  */
 @SuppressWarnings("rawtypes")
-public class Quick extends MySort {
+public class QuickSort extends MySort {
 
     public static void sort(Comparable[] a) {
         //随机排列，避免数组有序出现最差排序
-        StdRandom.shuffle(a);
+        //StdRandom.shuffle(a);
         show(a);
         //两向切分
         sort(a, 0, a.length - 1);
@@ -98,7 +97,7 @@ public class Quick extends MySort {
     }
 
     public static void main(String[] args) {
-        Quick.sort(a);
-        show(a);
+        QuickSort.sort(b);
+        show(b);
     }
 }

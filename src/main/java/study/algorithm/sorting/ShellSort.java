@@ -8,7 +8,7 @@ import study.algorithm.sorting.base.MySort;
  * @Description:希尔排序:改进自插入排序，交换不相邻元素以对数组的局部进行排序，并最终用插入排序将局部有序的数组排序<br>
  * @date 2018年2月5日上午11:13:26
  */
-public class Shell extends MySort {
+public class ShellSort extends MySort {
 
     /**
      * @param a
@@ -76,7 +76,7 @@ public class Shell extends MySort {
     }
 
     public static void main(String[] args) {
-        Shell.sort(a);
+        ShellSort.sort(a);
         show(a);
     }
 }

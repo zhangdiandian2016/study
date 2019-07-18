@@ -5,10 +5,14 @@ import study.algorithm.sorting.base.MySort;
 /**
  * @author denny.zhang
  * @ClassName:Insertion
- * @Description:插入排序：对于数组长度为N的数组<br>就像扑克牌插纸牌一样 <ul> <li>比较次数：N-1~N²/2  平均N²/4 </li> <li>交换次数：0~N²/2 平均N²/4</li> </ul>
+ * @Description:插入排序：对于数组长度为N的数组<br>就像扑克牌插纸牌一样
+ * <ul>
+ *     <li>比较次数：N-1~N²/2  平均N²/4 </li>
+ *     <li>交换次数：0~N²/2 平均N²/4</li>
+ * </ul>
  * @date 2018年2月5日上午11:13:26
  */
-public class Insertion extends MySort {
+public class InsertionSort extends MySort {
 
     @SuppressWarnings("rawtypes")
     public static void sort(Comparable[] a) {
@@ -24,7 +28,7 @@ public class Insertion extends MySort {
     }
 
     public static void main(String[] args) {
-        Insertion.sort(a);
-        show(a);
+        InsertionSort.sort(b);
+        show(b);
     }
 }
