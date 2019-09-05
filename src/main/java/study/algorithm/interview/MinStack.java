@@ -3,7 +3,8 @@ package study.algorithm.interview;
 import java.util.Stack;
 
 /**
- * 求最小栈：实现入栈、出栈、取最小值的时间复杂度都是O（1），最坏情况空间复杂度是O（n）
+ * 求最小栈：实现入栈、出栈、取最小值。
+ * 时间复杂度都是O（1），最坏情况空间复杂度是O（n）
  *
  * @author denny
  * @date 2019/9/4 下午2:37

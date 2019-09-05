@@ -2,6 +2,7 @@ package study.algorithm.interview;
 
 /**
  * 删除整数的k个数字，使得留下的数字最小
+ * 时间复杂度：O（n）
  *
  * @author denny
  * @date 2019/9/5 下午4:43

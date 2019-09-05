@@ -2,6 +2,7 @@ package study.algorithm.interview;
 
 /**
  * 判断是否是2的整数次幂：时间复杂度
+ * 时间复杂度是O（1）
  *
  * @author denny
  * @date 2019/9/4 下午5:18
