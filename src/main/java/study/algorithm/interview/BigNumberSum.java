@@ -38,6 +38,7 @@ public class BigNumberSum {
         StringBuilder stringBuilder = new StringBuilder();
         // 是否找到大整数的最高有效位
         boolean findFirst = false;
+        // 倒序遍历，即从最高位开始找非零数，找到一个就可以开始append了
         for (int i = result.length - 1; i >= 0; i--) {
             if (!findFirst) {
                 if (result[i] == 0) {
