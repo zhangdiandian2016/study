@@ -3,7 +3,7 @@ package study.algorithm.interview;
 import java.util.Stack;
 
 /**
- * 栈实现队列
+ * 栈实现队列：时间复杂度：入队O(1) 出队O(1)（均摊时间复杂度）
  *
  * @author denny
  * @date 2019/9/5 上午11:14
