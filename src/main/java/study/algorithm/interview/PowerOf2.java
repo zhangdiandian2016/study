@@ -11,7 +11,7 @@ public class PowerOf2 {
     /**
      * 判断是否是2的整数次幂： 2的整数次幂转换成二进制（1+n个0）& 二进制-1（n个1）=0
      *
-     * @param num
+     * @param num 数字
      * @return
      */
     private static boolean isPowerOf2(int num) {
