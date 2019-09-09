@@ -1,7 +1,9 @@
 package study.algorithm.interview;
 
 /**
- * 求金矿最优收益（动态规划） 时间复杂度：O(n*w)n为人数 w为金矿数 空间复杂度：O（n）
+ * 求金矿最优收益（动态规划）
+ * 时间复杂度：O(n*w)n为人数 w为金矿数
+ * 空间复杂度：O（n）
  *
  * @author denny
  * @date 2019/9/6 下午4:21
