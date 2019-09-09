@@ -7,7 +7,7 @@ package study.algorithm.interview;
  * @author denny
  * @date 2019/9/5 下午4:43
  */
-public class removeKDigits {
+public class RemoveKDigits {
 
     /**
      * 删除整数的k个数字，使得留下的数字最小
