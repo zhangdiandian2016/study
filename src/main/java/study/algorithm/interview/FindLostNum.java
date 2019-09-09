@@ -41,13 +41,16 @@ public class FindLostNum {
         }
         //确定2个整数的不同位，以此来做分组
         int separtor = 1;
+        //xorResult=0000 0110B ,A^B=>倒数第二位=1即，倒数第二位不同。一个是0一个是1.=》原数组可拆分成2个，一组倒数第二位是0，一组是1。& 01 、10 倒数第二位为1，separtor左移一位
         while (0 == (xorResult & separtor)) {
             separtor <<= 1;
         }
         //第二次分组进行异或运算
         for (int i = 0; i < array.length; i++) {
+            // 按位与 10 ==0一组，一直异或计算，就是那个奇数次整数（因为偶数次整数，异或后=1相互抵消掉了）
             if (0 == (array[i] & separtor)) {
                 result[0] ^= array[i];
+                // 按位与 10 !=0另一组，一直异或计算，就是那个奇数次整数
             } else {
                 result[1] ^= array[i];
             }
