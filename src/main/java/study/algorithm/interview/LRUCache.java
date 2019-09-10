@@ -5,7 +5,8 @@ import study.algorithm.base.Node;
 import java.util.HashMap;
 
 /**
- * LRU（Least Recently Used）最近最少使用算法(非线程安全) head（最少使用）-->*-->*-->end(最近使用) 注：JDK中LinkedHashMap实现了LRU哈希链表，构造方法：LinkedHashMap(int initialCapacity容量,float
+ * LRU（Least Recently Used）最近最少使用算法(非线程安全) head（最少使用）<-->*<-->*<-->end(最近使用) 注：JDK中LinkedHashMap实现了LRU哈希链表，构造方法：LinkedHashMap(int
+ * initialCapacity容量,float
  * loadFactor负载,boolean accessOrder是否LRU访问顺序，true代表LRU)
  *
  * @author denny
