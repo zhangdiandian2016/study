@@ -14,7 +14,7 @@ import java.util.Random;
 public class RedPackage {
 
     /**
-     * 拆分红包
+     * 拆分红包：二分均值法（每次抢红包的平均值是相等的）
      *
      * @param totalAMount    总金额，单位：分
      * @param totalPeopleNum 总人数
