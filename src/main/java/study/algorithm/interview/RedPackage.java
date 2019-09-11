@@ -20,7 +20,7 @@ public class RedPackage {
 
     /**
      * 拆分红包：二分均值法（每次抢红包的平均值是相等的）
-     *
+     * 注：除最后一个红包外，其它红包<剩余人均金额的2倍，不算完全自由随机抢红包
      * @param totalAMount    总金额，单位：分
      * @param totalPeopleNum 总人数
      * @return
@@ -45,6 +45,13 @@ public class RedPackage {
         return amountList;
     }
 
+    /**
+     * 线段切割法：红包金额随机性好 1.当随机切割点出现重复时，再继续随机一个
+     *
+     * @param totalAmount
+     * @param totalPeopleNum
+     * @return
+     */
     public static List<Integer> divideRedPackage2(Integer totalAmount, Integer totalPeopleNum) {
         // 切割点list
         List<Integer> indexList = new ArrayList<>();
