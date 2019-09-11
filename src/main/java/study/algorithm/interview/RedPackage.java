@@ -27,7 +27,7 @@ public class RedPackage {
         // 没抢人数
         Integer restPeopleNum = totalPeopleNum;
         Random random = new Random();
-        // 遍历totalPeopleNum-1遍，最后一个人直接都给他
+        // 遍历totalPeopleNum-1遍，最后一个人直接把余下的红包都给他
         for (int i = 0; i < totalPeopleNum - 1; i++) {
             // [1,剩余人均金额的2倍-1]
             int amount = random.nextInt(restAmount / restPeopleNum * 2 - 1) + 1;
@@ -35,6 +35,7 @@ public class RedPackage {
             restPeopleNum--;
             amountList.add(amount);
         }
+        // 最后一个人，余下的红包都给他
         amountList.add(restAmount);
         return amountList;
     }
