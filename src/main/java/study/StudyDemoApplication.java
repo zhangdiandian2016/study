@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
+ *
+ * springboot启动入口
  * @author: denny
  * Date: 2017-10-12 上午11:28
  */
