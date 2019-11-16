@@ -11,9 +11,13 @@ import java.math.BigDecimal;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = StudyDemoApplication.class)
+/**
+ * 基础测试类，具体测试类继承即可启动springboot
+ */
 public class BaseTest {
 
     public static void main(String[] args) {
+
         //java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
         //BigDecimal bigDecimal = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_DOWN);
         //System.out.println(bigDecimal);
