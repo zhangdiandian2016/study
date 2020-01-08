@@ -1,54 +1,40 @@
 package study.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
+ * <p>
+ * 用户表
+ * </p>
  *
  * @author denny.zhang
- * @date 2018-09-03
+ * @since 2020-01-07
  */
-//@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-public class User {
-	/**
-	 *
-	 */
-	private Integer id;
-	/**
-	 * 姓名
-	 */
-	private String name;
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("t_user")
+public class User extends Model<User> {
 
-	private BigDecimal money;
+    private static final long serialVersionUID=1L;
 
-	public Integer getId() {
-		return id;
-	}
+    private Long id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private BigDecimal money;
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public BigDecimal getMoney() {
-		return money;
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 
-	public void setMoney(BigDecimal money) {
-		this.money = money;
-	}
 }

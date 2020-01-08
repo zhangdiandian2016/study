@@ -1,37 +1,48 @@
 package study.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 
+ * <p>
+ * 账户表
+ * </p>
+ *
  * @author denny.zhang
- * @date 2018-09-03
+ * @since 2020-01-07
  */
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserBalance {
-		/**
-     * ID主键
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("t_user_balance")
+public class UserBalance extends Model<UserBalance> {
+
+    private static final long serialVersionUID=1L;
+
+    private Long id;
+
+    private String name;
+
+    /**
+     * 用户ID
      */
-	 private Integer id; 
-		/**
-     * 姓名
-     */
-	 private String name; 
-		/**
-     * 用户表ID
-     */
-	 private Integer userId; 
-		/**
+    private Long userId;
+
+    /**
      * 账户余额
      */
-	 private BigDecimal balance; 
-	}
+    private BigDecimal balance;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
+}

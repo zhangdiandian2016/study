@@ -1,12 +1,11 @@
 package study.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import study.domain.User;
-import study.repository.master.UserRepository;
+import study.mapper.UserMapper;
 import study.service.UserService;
-
-import javax.annotation.Resource;
 
 /**
  * @Description 
@@ -15,18 +14,17 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService{
-    @Resource
-    private UserRepository userRepository;
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService{
+
 
     //@Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public void addUser(int id, String name) {
+    public void addUser(long id, String name) {
         log.info("[addUser] begin!!!");
         User user = new User();
         user.setId(id);
         user.setName(name);
-        userRepository.insert(user);
+        this.save(user);
 
         log.info("[addUser] end!!! ");
         //创造一个异常，看回滚情况

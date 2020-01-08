@@ -1,5 +1,6 @@
 package study.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
@@ -9,7 +10,7 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 import study.domain.UserBalance;
-import study.repository.master.UserBalanceRepository;
+import study.mapper.UserBalanceMapper;
 import study.service.UserBalanceService;
 import study.service.UserService;
 
@@ -23,12 +24,12 @@ import java.math.BigDecimal;
  */
 @Slf4j
 @Service
-public class UserBalanceImpl implements UserBalanceService {
+public class UserBalanceImpl extends ServiceImpl<UserBalanceMapper, UserBalance> implements UserBalanceService {
 
     @Resource
     private UserService userService;
     @Resource
-    private UserBalanceRepository userBalanceRepository;
+    private UserBalanceService userBalanceService;
     @Resource
     private TransactionTemplate transactionTemplate;
 
@@ -41,7 +42,7 @@ public class UserBalanceImpl implements UserBalanceService {
     @Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public void addUserBalance(UserBalance userBalance) {
-        this.userBalanceRepository.insert(userBalance);
+        this.userBalanceService.save(userBalance);
     }
 
     /**
@@ -53,7 +54,7 @@ public class UserBalanceImpl implements UserBalanceService {
      */
     @Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public void addUserBalanceAndUser(int id, String name, BigDecimal balance) {
+    public void addUserBalanceAndUser(long id, String name, BigDecimal balance) {
         log.info("[addUserBalanceAndUser] begin!!!");
         //1.新增用户余额
         UserBalance userBalance = new UserBalance();
@@ -80,30 +81,30 @@ public class UserBalanceImpl implements UserBalanceService {
      * @return
      */
     @Override
-    public void addUserBalanceAndUserWithinTT(int id, String name, BigDecimal balance) {
+    public void addUserBalanceAndUserWithinTT(long id, String name, BigDecimal balance) {
         //1.没有返回值的事务回调
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
-                //try {
-                    log.info("[addUserBalanceAndUser] begin!!!");
+        //try {
+            log.info("[addUserBalanceAndUser] begin!!!");
 
-                    //1.新增用户
-                userService.addUser(id, name);
-                    //2.新增用户余额
-                    UserBalance userBalance = new UserBalance();
-                    userBalance.setName(name);
-                    userBalance.setBalance(new BigDecimal(1000));
-                    userBalanceRepository.insert(userBalance);
-                    int a = 1/0;
-                    log.info("[addUserBalanceAndUser] end!!!");
-                    //throw new Exception("自定义异常！！");
-                    //注意：这里catch住异常后，要不就再次Throw异常，要不就设置setRollbackOnly，否则事务不会滚。如果是声明式注解@Transactional ,捕获后可以TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();强制回滚
-                //} catch (Exception e) {
-                //    // 自定义异常回滚
-                //    status.setRollbackOnly();
-                //    log.error("异常回滚!,e={}",e);
-                //}
+            //1.新增用户
+            userService.addUser(id, name);
+            //2.新增用户余额
+            UserBalance userBalance = new UserBalance();
+            userBalance.setName(name);
+            userBalance.setBalance(new BigDecimal(1000));
+            userBalanceService.save(userBalance);
+            int a = 1/0;
+            log.info("[addUserBalanceAndUser] end!!!");
+            //throw new Exception("自定义异常！！");
+            //注意：这里catch住异常后，要不就再次Throw异常，要不就设置setRollbackOnly，否则事务不会滚。如果是声明式注解@Transactional ,捕获后可以TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();强制回滚
+        //} catch (Exception e) {
+        //    // 自定义异常回滚
+        //    status.setRollbackOnly();
+        //    log.error("异常回滚!,e={}",e);
+        //}
 
             }
         });

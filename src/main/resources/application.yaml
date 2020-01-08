@@ -7,37 +7,24 @@ logging:
   level:
     default: INFO
 
-
-
-#
-#  datasource
-#
-#study:
-#  datasource:
-#    master:
-#      type: com.alibaba.druid.pool.DruidDataSource
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://192.168.80.36:3306/test?characterEncoding=UTF-8&amp;autoReconnect=true&amp;rewriteBatchedStatements=true&allowMultiQueries=true
-#      username: lekuda
-#      password: 123456
-#      max-active: 10
-#      min-idle: 0
-study:
+# 数据源配置
+spring:
   datasource:
-    master:
-      type: com.alibaba.druid.pool.xa.DruidXADataSource
-      name: test
-      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: 12345
-
-
-    slave:
-      type: com.alibaba.druid.pool.xa.DruidXADataSource
-      name: test2
-      url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: 12345
+    dynamic:
+      primary: master   #设置默认的数据源
+      datasource:
+        master:
+          username: root
+          password:
+          url: jdbc:mysql://localhost:3306/study?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.jdbc.Driver
+        # 从数据源配置
+        slave:
+          username: root
+          password:
+          url: jdbc:mysql://localhost:3306/slave?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.jdbc.Driver
+      mp-enabled: true
 
 
 #  #jta相关参数配置

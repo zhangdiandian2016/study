@@ -1,10 +1,11 @@
 package study.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.domain.UserMsg;
-import study.repository.slave.UserMsgRepository;
+import study.mapper.UserMsgMapper;
 import study.service.UserMsgService;
 import study.service.UserService;
 
@@ -17,13 +18,13 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
-public class UserMsgServiceImpl implements UserMsgService {
+public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> implements UserMsgService {
 
     @Resource
     private UserService userService;
 
     @Resource
-    private UserMsgRepository userMsgRepository;
+    private UserMsgService userMsgService;
 
     /**
      * 新增带备注的用户：申明式分布式事务（atomikos）
@@ -34,7 +35,7 @@ public class UserMsgServiceImpl implements UserMsgService {
      */
     @Transactional(transactionManager = "atomikosTransactionManager", rollbackFor = Exception.class)
     @Override
-    public void addUserMsg(int id, String name, String msg) {
+    public void addUserMsg(long id, String name, String msg) {
         log.info("[addUserMsg] begin!!!");
 
         // 1.插入用户
@@ -44,7 +45,7 @@ public class UserMsgServiceImpl implements UserMsgService {
         userMsg.setUserId(id);
         userMsg.setMsg(msg);
         // 2.插入用户备注
-        userMsgRepository.insert(userMsg);
+        userMsgService.save(userMsg);
 
         log.info("[addUserMsg] end!!! ");
         //创造一个异常，看回滚情况
