@@ -11,10 +11,11 @@ import study.service.UserService;
 
 import javax.annotation.Resource;
 
-/**
- * @author denny
- * @Description
- * @date 2018/8/27 下午5:31
+
+/***
+ * @Description 用户消息服务（slave库）
+ * @author denny.zhang
+ * @date 2020/1/8 10:28 上午
  */
 @Slf4j
 @Service

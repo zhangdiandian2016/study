@@ -3,6 +3,7 @@ package study;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @author: denny
  * Date: 2017-10-12 上午11:28
  */
-@SpringBootApplication
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 @EnableAsync
 @MapperScan("study.mapper")
 public class StudyDemoApplication {
