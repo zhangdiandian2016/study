@@ -18,4 +18,5 @@ public interface UserMsgService extends IService<UserMsg> {
      */
     void addUserMsg(long id, String name, String msg);
 
+    void addMsg(UserMsg userMsg);
 }

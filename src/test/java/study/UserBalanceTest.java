@@ -3,6 +3,7 @@ package study;
 import lombok.Data;
 import org.junit.Test;
 import study.service.UserBalanceService;
+import study.service.UserMsgService;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -21,12 +22,15 @@ public class UserBalanceTest extends BaseTest{
     @Resource
     private UserBalanceService userBalanceService;
 
+    @Resource
+    private UserMsgService userMsgService;
+
     /**
      * 申明式事务
      */
     @Test
     public void testAddUserBalanceAndUser(){
-        userBalanceService.addUserBalanceAndUser(100, "赵六", new BigDecimal(1000));
+        userBalanceService.addUserBalanceAndUser(114, "赵六114", new BigDecimal(1000));
     }
 
     /**
@@ -37,47 +41,17 @@ public class UserBalanceTest extends BaseTest{
         userBalanceService.addUserBalanceAndUserWithinTT(100, "赵六", new BigDecimal(1000));
     }
 
+
+    /**
+     * 动态数据源
+     */
+    @Test
+    public void testDynamicDataSource(){
+
+        userMsgService.addUserMsg(121,"121","消息121");
+    }
+
     public static void main(String[] args) {
-
-        //BigDecimal bigDecimal =new BigDecimal(0.0000000000000000);
-        //System.out.println(BigDecimal.ZERO.equals(bigDecimal));
-
-        //List<String> list = Arrays.asList("aaaaaa","bbbb","cc","dd","f");
-        //list.sorting(Comparator.comparingInt(String::length));
-        //System.out.println(list);
-        ////AbstractPlatformTransactionManager
-        //Double d = 20000000D;
-        //System.out.println(new BigDecimal(d).toPlainString());
-        //BigDecimal bigDecimal = new BigDecimal(0.00009);
-        //System.out.println(bigDecimal);
-        //System.out.println(bigDecimal+"");
-        //System.out.println(bigDecimal.setScale(10, RoundingMode.DOWN));
-        //System.out.println(bigDecimal.setScale(10, RoundingMode.DOWN).doubleValue());
-        //System.out.println(bigDecimal.setScale(10, RoundingMode.DOWN).stripTrailingZeros());
-        //System.out.println(bigDecimal.toString());
-        //System.out.println(bigDecimal.toPlainString());
-        //System.out.println(bigDecimal.stripTrailingZeros().toPlainString());
-
-        //Boy1 boy1 = new Boy1();
-        //boy1.setId(111L);
-        ////boy1.setIsBuy(true);
-        //
-        //Boy2 boy2 = new Boy2();
-        ////boy2.setId(222L);
-        //// boy-->tod
-        //try {
-        //    BeanUtils.copyProperties(boy2, boy1);
-        //} catch (IllegalAccessException e) {
-        //    e.printStackTrace();
-        //} catch (InvocationTargetException e) {
-        //    e.printStackTrace();
-        //}
-        //
-        //System.out.println("boy1  id="+boy1.getId());
-        //System.out.println("boy2  id="+boy2.getId());
-
-        // System.out.println("date="+new Date(1545993487000L));
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         Date a = null;
         try {

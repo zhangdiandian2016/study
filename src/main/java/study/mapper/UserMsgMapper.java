@@ -12,7 +12,7 @@ import study.domain.UserMsg;
  * @author denny.zhang
  * @since 2020-01-07
  */
-@DS("slave") //这里是配置数据源注解，默认是master
 public interface UserMsgMapper extends BaseMapper<UserMsg> {
 
+    int addMsg(UserMsg userMsg);
 }

@@ -1,5 +1,6 @@
 package study.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import java.math.BigDecimal;
  */
 @Slf4j
 @Service
+@DS("master")
 public class UserBalanceImpl extends ServiceImpl<UserBalanceMapper, UserBalance> implements UserBalanceService {
 
     @Resource
@@ -39,8 +41,9 @@ public class UserBalanceImpl extends ServiceImpl<UserBalanceMapper, UserBalance>
      * @param userBalance
      * @return
      */
-    @Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
+    //@Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
+    @DS("slave")
     public void addUserBalance(UserBalance userBalance) {
         this.userBalanceService.save(userBalance);
     }
@@ -52,7 +55,7 @@ public class UserBalanceImpl extends ServiceImpl<UserBalanceMapper, UserBalance>
      * @param balance
      * @return
      */
-    @Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
+    //@Transactional(propagation= Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public void addUserBalanceAndUser(long id, String name, BigDecimal balance) {
         log.info("[addUserBalanceAndUser] begin!!!");

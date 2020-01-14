@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.oloan.order.mapper.UserMsgMapper">
+<mapper namespace="study.mapper.UserMsgMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="study.domain.UserMsg">
@@ -13,5 +13,11 @@
     <sql id="Base_Column_List">
         id, msg, user_id
     </sql>
+
+    <insert id="addMsg" parameterType="study.domain.UserMsg" >
+    INSERT INTO t_user_msg(id,msg,user_id)
+    VALUES
+    (#{id,jdbcType=BIGINT},#{msg,jdbcType=VARCHAR},#{userId,jdbcType=BIGINT});
+    </insert>
 
 </mapper>
