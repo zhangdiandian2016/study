@@ -1,60 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+<!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+<!--    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>-->
+
     <property name="log.path" value="target/logs" />
-    <!--输出到控制台-->
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>Debug</level>
-        </filter>
-        <encoder>
-            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
-            <charset>UTF-8</charset>
-        </encoder>
+
+    <!--邮件-->
+    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <!-- 默认error级别都触发，这里使用带标记的error -->
+        <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+            <marker>ALARM</marker>
+        </evaluator>
+        <smtpHost>mail.opay-inc.com</smtpHost>
+        <smtpPort>465</smtpPort>
+        <username>diandian.zhang@opay-inc.com</username>
+        <password>Oloan123!</password>
+        <SSL>true</SSL>
+        <asynchronousSending>true</asynchronousSending>
+        <to>787292659@qq.com</to>
+        <from>diandian.zhang@opay-inc.com</from>
+        <subject>应用告警</subject>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
     </appender>
 
+<!--    &lt;!&ndash;输出到控制台&ndash;&gt;-->
+<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>Debug</level>-->
+<!--        </filter>-->
+<!--        <encoder>-->
+<!--            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
-    <!-- Output full logs to file -->
-    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}/info.log</file>
-        <encoder>
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logging.path}/archive/history_info.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
-            <maxHistory>300</maxHistory>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>500MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-    </appender>
 
-    <!-- Output WARN, ERROR logs to file -->
-    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}/error.log</file>
-        <encoder>
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>WARN</level>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logging.path}/archive/history_error.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
-            <maxHistory>300</maxHistory>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>500MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-    </appender>
-    <!--direct log messages to stdout -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+<!--    &lt;!&ndash; Output full logs to file &ndash;&gt;-->
+<!--    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${log.path}/info.log</file>-->
+<!--        <encoder>-->
+<!--            <pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>${logging.path}/archive/history_info.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>-->
+<!--            <maxHistory>300</maxHistory>-->
+<!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+<!--                <maxFileSize>500MB</maxFileSize>-->
+<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+<!--        </rollingPolicy>-->
+<!--    </appender>-->
+
+<!--    &lt;!&ndash; Output WARN, ERROR logs to file &ndash;&gt;-->
+<!--    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${log.path}/error.log</file>-->
+<!--        <encoder>-->
+<!--            <pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>WARN</level>-->
+<!--        </filter>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>${logging.path}/archive/history_error.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>-->
+<!--            <maxHistory>300</maxHistory>-->
+<!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+<!--                <maxFileSize>500MB</maxFileSize>-->
+<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+<!--        </rollingPolicy>-->
+<!--    </appender>-->
+<!--    &lt;!&ndash;direct log messages to stdout &ndash;&gt;-->
+<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+
 
     <!-- 用来设置某一个包或具体的某一个类的日志打印级别 -->
     <!--<logger name="study" level="DEBUG"/>
@@ -65,7 +88,9 @@
         不能设置为INHERITED或者同义词NULL。默认是DEBUG
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+    <root level="DEBUG">
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="FILE_ERROR"/>-->
+        <appender-ref ref="EMAIL"/>
     </root>
 </configuration>

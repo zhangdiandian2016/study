@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
 /**
  * 
  * @ClassName: SemaphoreTest
- * @Description: 
+ * @Description: 信号量
  * @author denny.zhang
  * @date 2016年11月4日 下午1:14:05
  *

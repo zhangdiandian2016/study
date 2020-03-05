@@ -4,8 +4,8 @@
 logging:
   config: classpath:config/log/logback-spring.xml
   path: target/logs
-  level:
-    default: INFO
+#  level:
+#    default: INFO
 
 # 数据源配置
 spring:
@@ -24,6 +24,10 @@ spring:
           password: 12345
           url: jdbc:mysql://localhost:3306/slave?useUnicode=true&characterEncoding=UTF-8&useSSL=false
           driverClassName: com.mysql.jdbc.Driver
+# spring
+  application:
+    name: study-service
+
 # mybatis-plus
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**.xml
