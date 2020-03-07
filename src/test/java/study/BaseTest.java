@@ -32,6 +32,10 @@ public class BaseTest {
         //System.out.println(bigDecimal.setScale(2, RoundingMode.DOWN).doubleValue());
         String a = JSON.toJSONString(null);
         System.out.println(a.equals("null"));
+        Integer aa= 3;
+        if(aa!= 1 && aa !=4){
+            System.out.println("!!!!!!");
+        }
 
     }
 }
