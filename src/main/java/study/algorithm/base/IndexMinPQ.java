@@ -18,7 +18,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      */
     private int n;
     /**
-     * 索引二叉堆（元素=顶点v，对应keys[v]）：数组从pq[0]代表原点其它顶点从pq[1]开始插入
+     * 索引二叉堆（数组中每个元素都是顶点，顶点v，对应keys[v]）：数组从pq[0]代表原点其它顶点从pq[1]开始插入
      */
     private int[] pq;
     /**
@@ -29,7 +29,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
     /**
      * 元素有序数组（按照pq的索引赋值）
      */
-    private Key[] keys;
+    public Key[] keys;
 
     /**
      * 初始化一个空索引优先队列，索引范围:0 ~ maxN-1
