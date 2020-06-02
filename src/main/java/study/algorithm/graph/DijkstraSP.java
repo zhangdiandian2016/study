@@ -230,7 +230,7 @@ public class DijkstraSP {
     public static void main(String[] args) {
         // 图文件名称
         In in = new In(args[0]);
-        // 构造边权重有向图
+        // 构造边权重有向图  入参 tinyEWD.txt
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         // 顶点
         int s = Integer.parseInt(args[1]);
