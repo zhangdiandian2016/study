@@ -239,7 +239,7 @@ public class PrimMST {
     public static void main(String[] args) {
         // 读取图文件
         In in = new In(args[0]);
-        // 初始化：边加权无向图
+        // 初始化：边加权无向图  入参：PrimMST_tinyEWD.txt
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         // 核心算法Prim
         PrimMST mst = new PrimMST(G);
